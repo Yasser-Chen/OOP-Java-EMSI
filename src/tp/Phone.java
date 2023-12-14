@@ -1,29 +1,66 @@
-package tp ;
+package tp;
 
 import java.util.*;
+import java.util.Objects;
 
-public class Phone implements Comparable<Phone>{
-	protected static int numserie;
-	protected static String nom;
-	protected int prix ;
-	
-	public Phone(String nom ,int prix,int numserie ) {
+public class Phone implements Comparable<Phone> {
+	protected int numserie;
+	protected String nom;
+	protected int prix;
+
+	public Phone(String nom, int prix, int numserie) {
 		super();
-		this.numserie=numserie;
+		this.numserie = numserie;
 		this.nom = nom;
 		this.prix = prix;
-	
 	}
 
-	
+	public Phone() {
+	}
+
+	public int getNumserie() {
+		return this.numserie;
+	}
+
+	public void setNumserie(int numserie) {
+		this.numserie = numserie;
+	}
+
+	public String getNom() {
+		return this.nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public int getPrix() {
+		return this.prix;
+	}
+
+	public void setPrix(int prix) {
+		this.prix = prix;
+	}
+
+	public Phone numserie(int numserie) {
+		setNumserie(numserie);
+		return this;
+	}
+
+	public Phone nom(String nom) {
+		setNom(nom);
+		return this;
+	}
+
+	public Phone prix(int prix) {
+		setPrix(prix);
+		return this;
+	}
 
 	@Override
 	public String toString() {
 		return "Phone [numserie=" + numserie + ", nom=" + nom + ", prix=" + prix + "]";
 	}
-
-
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -34,17 +71,13 @@ public class Phone implements Comparable<Phone>{
 		if (getClass() != obj.getClass())
 			return false;
 		Phone other = (Phone) obj;
-		return Objects.equals(nom, other.nom) && numserie == other.numserie && prix == other.prix;
+		return Objects.equals(nom, other.getNom()) && numserie == other.getNumserie() && prix == other.getPrix();
 	}
-
-
 
 	@Override
 	public int compareTo(Phone o) {
 		return Double.compare(numserie, prix);
 	}
-	
-	
 
 	public static void main(String[] args) {
 		// Création d'objets Phone
@@ -53,10 +86,10 @@ public class Phone implements Comparable<Phone>{
 		Phone tele3 = new Phone("androidphone", 500, 2005);
 
 		// Création d'un objet PhoneListContainer
-		PhoneListContainer phoneListContainer = new PhoneListContainer(nom, numserie, numserie);
+		PhoneListContainer phoneListContainer = new PhoneListContainer(tele1.nom, tele1.numserie, tele1.numserie);
 
 		// Remplissage de la liste de téléphones dans PhoneListContainer
-		phoneListContainer.populateList(new Phone[]{tele1, tele2, tele3});
+		phoneListContainer.populateList(new Phone[] { tele1, tele2, tele3 });
 
 		// Affichage de la liste de téléphones
 		System.out.println("Liste de téléphones :");
@@ -67,7 +100,7 @@ public class Phone implements Comparable<Phone>{
 		phoneListContainer.sortList();
 		phoneListContainer.displayList();
 
-		// Insertion d'un nouveau téléphone 
+		// Insertion d'un nouveau téléphone
 		Phone tele4 = new Phone("j1", 300, 2022);
 		phoneListContainer.insertElement(tele4, 1);
 		System.out.println("\nListe de téléphones après insertion d'un nouveau téléphone :");
@@ -113,22 +146,15 @@ public class Phone implements Comparable<Phone>{
 
 		// Vidange de la liste de téléphones
 		phoneListContainer.clearList();
-	
+
 		System.out.println("\nLa liste de téléphones est-elle vide ? " + phoneListContainer.isListEmpty());
-	
+
 		Phone tele88 = new SmartPhone("iphone1", 2000, 2023);
-		Phone tele5 = new Phone("nokiapile", 200,1999);
-		
-		
+		Phone tele5 = new Phone("nokiapile", 200, 1999);
+
 		System.out.println(tele88);
 		System.out.println(tele5);
-	
+
 	}
 
-
-		
-	}
-	
-	
-
-
+}
